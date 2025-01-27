@@ -1,7 +1,6 @@
 from fastapi import APIRouter, status, Depends
 from schema.task import Task
 from repository import TaskRepository
-from database.models import Tasks
 from dependency import get_task_service, get_tasks_repository, get_cache_task
 from service import TaskService
 
