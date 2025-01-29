@@ -6,6 +6,7 @@ class Task(BaseModel):
     name: str | None = None
     pomodoro_count: int | None = None
     category_id: int | None = None
+    user_id: int | None = None
 
     class Config:
         from_attributes = True
@@ -15,3 +16,10 @@ class Task(BaseModel):
         if self.name is None and self.pomodoro_count is None:
             raise ValueError("name or pomodoro_count is required")
         return self
+    
+
+class TaskCreateSchema(BaseModel):
+    name: str | None = None
+    pomodoro_count: int | None = None
+    category_id: int | None = None
+

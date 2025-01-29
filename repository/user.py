@@ -8,11 +8,10 @@ from models import UserProfile
 class UserRepository:
     db_session: Session
 
-    def create_user(self, username: str, password: str, access_token: str) -> UserProfile:
+    def create_user(self, username: str, password: str) -> UserProfile:
         query = insert(UserProfile).values(
             username=username, 
-            password=password, 
-            access_token=access_token
+            password=password
             ).returning(UserProfile.id)
         with self.db_session() as session:
             user_id:int = session.execute(query).scalar_one()
@@ -29,6 +28,6 @@ class UserRepository:
     def get_user_by_username(self, username: str) -> UserProfile | None:
         query = select(UserProfile).where(UserProfile.username == username)
         with self.db_session() as session:
-            user: UserProfile = session.execute(query).scalar_one_or_none()
+            user: UserProfile = session.execute(query).scalars().first()
         return user
 
