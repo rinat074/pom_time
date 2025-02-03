@@ -3,7 +3,8 @@
 all: run
 
 run:
-	uvicorn main:app --reload --env-file=.local.env
+	export ENVIROMENT=local
+	gunicorn main:app --worker-class uvicorn.workers.UvicornWorker --config infra/gunicorn.conf.py --reload
 
 migrate-create:
 	alembic revision --autogenerate -m $(MIGRATION)

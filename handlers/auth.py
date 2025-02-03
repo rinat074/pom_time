@@ -14,7 +14,7 @@ router = APIRouter(prefix="/auth", tags=["auth"])
         )
 async def login(user: UserCreateSchema, auth_service: Annotated[AuthService, Depends(get_auth_service)]):
     try:
-        user_login_data = auth_service.login(user.username, user.password)
+        user_login_data = await auth_service.login(user.username, user.password)
         return user_login_data
     except UserNotFoundError as e:
         raise HTTPException(status_code=404, detail=e.detail)
