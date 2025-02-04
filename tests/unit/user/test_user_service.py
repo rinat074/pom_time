@@ -1,7 +1,8 @@
 import pytest
 from schema import UserLoginSchema
 from tests.fixtures.user.user_model import UserProfileFactory
-from tests.fixtures.common import db_session, user_repository, auth_service, user_service  # импортируем фикстуры
+from tests.fixtures.database import db_session
+from tests.fixtures.common import user_repository, auth_service, user_service
 
 @pytest.mark.asyncio
 async def test_create_user(user_service):

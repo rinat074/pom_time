@@ -4,6 +4,8 @@ import datetime as dt
 from dependency import get_auth_service
 from service import AuthService
 from settings import Settings
+from tests.fixtures.database import db_session
+
 pytestmark = pytest.mark.asyncio
 
 async def test_auth_service__success(auth_service):
